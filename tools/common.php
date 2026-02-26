@@ -10,7 +10,8 @@ function local_api_fetch($api)
 {
     // Start output buffering
     ob_start();
-    // Run api
+
+    // Run api php file
     include $api;
     
     // Get its output

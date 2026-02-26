@@ -2,7 +2,6 @@
 
 include_once '../components/header.php';
 
-// USE SNAKE CASE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 include_once '../tools/common.php';
 
 assert_session();
