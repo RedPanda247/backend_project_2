@@ -5,18 +5,19 @@ include 'api_handler.php';
 
 
 // Skip key validation for internal calls (when included via local_api_fetch)
-if (isset($_GET["key"])) {
-    if ($_GET["key"] !== $refresh_api_key) {
-        echo json_encode(['status' => 'unauthorized']);
-        die;
+if (isset($_GET["key"]) || $_GET["key"] !== $refresh_api_key) {
+    echo json_encode(['status' => 'unauthorized']);
+} else {
+    if (refresh_api_data()) {
+        echo json_encode(['status' => 'success']);
+    } else {
+        echo json_encode(['status' => 'fail']);
     }
 }
 
-// if (refresh_api_data()) {
-//     echo json_encode(['status' => 'success']);
-// } else {
-//     echo json_encode(['status' => 'fail']);
-// }
+
 
 // Always return sucess for now in development
-echo json_encode(['status' => 'success']);
+// echo json_encode(['status' => 'success']);
+
+?>
