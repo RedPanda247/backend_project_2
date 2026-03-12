@@ -4,7 +4,8 @@ include_once '../tools/common.php';
 assert_session();
 
 
-include_once '../components/header.php';
+include_header()
+
 ?>
 
 

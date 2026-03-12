@@ -13,7 +13,7 @@ function local_api_fetch($api)
 
     // Run api php file
     include $api;
-    
+
     // Get its output
     $output = ob_get_clean();
 
@@ -21,4 +21,9 @@ function local_api_fetch($api)
     $response = json_decode($output, true);
 
     return $response;
+}
+
+function include_header()
+{
+    include '../components/header.php';
 }

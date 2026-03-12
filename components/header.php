@@ -1,3 +1,7 @@
+<?php
+assert_session();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,9 +32,24 @@
             </a>
         </div>
         <div class="right">
-            <h2>Profile</h2>
+            <?php
+            if (isset($_SESSION["logged_in"])) {
+                ?>
+                <a href="../siter/profile.php">
+                    <h2>Profile</h2>
+                </a>
+                <?php
+            } else {
+                ?>
+                <a href="../sites/login.php">
+                    <h2>Login</h2>
+                </a>
+                <?php
+            }
+            ?>
         </div>
     </header>
+    <main>
     <style>
         header {
             padding: 1.5rem;

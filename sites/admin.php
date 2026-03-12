@@ -1,10 +1,8 @@
 <?php
 
-include_once '../components/header.php';
-
 include_once '../tools/common.php';
 
-assert_session();
+include_header();
 
 
 if (isset($_GET["refresh_game_api_data"])) {
