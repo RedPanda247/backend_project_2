@@ -40,6 +40,7 @@ function add_flash_message($message)
 
 function reload()
 {
-    header("Location: #");
+    $current_page = basename($_SERVER['PHP_SELF']);
+    header("Location: $current_page");
     exit;
 }

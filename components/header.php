@@ -9,6 +9,38 @@ assert_session();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        header {
+            padding: 1.5rem;
+            background-color: #111155;
+
+            display: flex;
+
+            &>* {
+                display: flex;
+                align-items: center;
+                flex: 1;
+
+                min-width: fit-content;
+
+                &.left {
+                    flex-direction: row;
+                }
+
+                &.center {
+                    flex-direction: row;
+                    justify-content: center;
+                    gap: 2rem;
+                }
+
+                &.right {
+                    flex-direction: row;
+                    justify-content: end;
+                }
+            }
+
+        }
+    </style>
 </head>
 
 <body>
@@ -50,34 +82,3 @@ assert_session();
         </div>
     </header>
     <main>
-        <style>
-            header {
-                padding: 1.5rem;
-                background-color: #111155;
-
-                display: flex;
-
-                &>* {
-                    display: flex;
-                    align-items: center;
-                    flex: 1;
-
-                    min-width: fit-content;
-
-                    &.left {
-                        flex-direction: row;
-                    }
-
-                    &.center {
-                        flex-direction: row;
-                        justify-content: center;
-                    }
-
-                    &.right {
-                        flex-direction: row;
-                        justify-content: end;
-                    }
-                }
-
-            }
-        </style>

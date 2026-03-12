@@ -30,8 +30,6 @@ if (!empty($_POST['username']) && !empty($_POST['password'])) {
     }
     $stmt->close();
 
-    add_flash_message("username:" . $username);
-
     // Hash password
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
@@ -55,7 +53,7 @@ if (!empty($_POST['username']) && !empty($_POST['password'])) {
         exit;
 
     } else {
-
+        // If new user could not be created
         $stmt->close();
         add_flash_message("Something went wrong, please try again");
         reload();
@@ -63,7 +61,7 @@ if (!empty($_POST['username']) && !empty($_POST['password'])) {
 
 
 
-} elseif (isset($_POST["submit"])) {
+} elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // If the user submitted the form but no fields were filled out
     add_flash_message("Please fill out all fields");
     reload();
@@ -82,6 +80,7 @@ include_flash_message();
         <label>Password<input name="password" type="password" placeholder="******"></label>
         <button name="submit" type="submit">Create account</button>
     </form>
+    <h4>Already have an account? Login <a href="login.php">here</a></h4>
 </div>
 
 <?php
