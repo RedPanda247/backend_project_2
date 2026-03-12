@@ -35,7 +35,7 @@ assert_session();
             <?php
             if (isset($_SESSION["logged_in"])) {
                 ?>
-                <a href="../siter/profile.php">
+                <a href="../sites/profile.php">
                     <h2>Profile</h2>
                 </a>
                 <?php
@@ -50,34 +50,34 @@ assert_session();
         </div>
     </header>
     <main>
-    <style>
-        header {
-            padding: 1.5rem;
-            background-color: #111155;
+        <style>
+            header {
+                padding: 1.5rem;
+                background-color: #111155;
 
-            display: flex;
-
-            &>* {
                 display: flex;
-                align-items: center;
-                flex: 1;
 
-                min-width: fit-content;
+                &>* {
+                    display: flex;
+                    align-items: center;
+                    flex: 1;
 
-                &.left {
-                    flex-direction: row;
+                    min-width: fit-content;
+
+                    &.left {
+                        flex-direction: row;
+                    }
+
+                    &.center {
+                        flex-direction: row;
+                        justify-content: center;
+                    }
+
+                    &.right {
+                        flex-direction: row;
+                        justify-content: end;
+                    }
                 }
 
-                &.center {
-                    flex-direction: row;
-                    justify-content: center;
-                }
-
-                &.right {
-                    flex-direction: row;
-                    justify-content: end;
-                }
             }
-
-        }
-    </style>
+        </style>

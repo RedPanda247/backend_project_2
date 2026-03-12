@@ -27,3 +27,17 @@ function include_header()
 {
     include '../components/header.php';
 }
+
+function include_flash_message()
+{
+    include 'flash.php';
+}
+
+function add_flash_message($message) {
+    $_SESSION["flash_messages"][] = $message;
+}
+
+function reload() {
+    header("Location: #");
+    exit;
+}
