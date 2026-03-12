@@ -1,7 +1,7 @@
 <?php
 function assert_session()
 {
-    if (!isset($_SESSION)) {
+    if (session_status() === PHP_SESSION_NONE) {
         session_start();
     }
 }
@@ -33,11 +33,13 @@ function include_flash_message()
     include 'flash.php';
 }
 
-function add_flash_message($message) {
+function add_flash_message($message)
+{
     $_SESSION["flash_messages"][] = $message;
 }
 
-function reload() {
+function reload()
+{
     header("Location: #");
     exit;
 }
