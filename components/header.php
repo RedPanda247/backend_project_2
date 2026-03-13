@@ -1,5 +1,8 @@
 <?php
 assert_session();
+
+include_flash_message();
+
 ?>
 
 <!DOCTYPE html>

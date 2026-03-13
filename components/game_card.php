@@ -1,3 +1,8 @@
+<?php 
+include_once '';
+
+?>
+
 <div class="game-card">
     <div class="top">
 
