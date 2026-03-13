@@ -1,3 +1,5 @@
+@import url('variables.css');
+
 * {
     box-sizing: border-box;
     padding: 0;
@@ -7,15 +9,24 @@
     flex-direction: column; */
 
     /* Text color */
-    color: rgb(120, 120, 120);
+    color: rgb(196, 196, 196);
 }
 
 a {
     /* text-decoration: none; */
 }
 
-:root {
-    --bg: rgb(31, 31, 50);
+button {
+    cursor: pointer;
+    background: none;
+}
+
+.clickable {
+    transition: 0.1s;
+
+    &:hover {
+        scale: 1.1;
+    }
 }
 
 body {
@@ -36,6 +47,17 @@ main {
     width: min(90%, 20rem);
 
     align-self: center;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 1rem;
+
+    .inputs {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
 
     label {
         display: flex;

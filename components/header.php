@@ -44,10 +44,17 @@ include_flash_message();
 
         }
     </style>
+    <link rel="stylesheet" href="../styles/common.css">
+    <!-- Apply site specific css after to override common.css -->
+    <?php if (isset($optional_css_path)) { ?>
+        <link rel="stylesheet" href="<?php echo $optional_css_path; ?>"> <?php
+    } else {
+        echo "css path null";
+    } ?>
 </head>
 
 <body>
-    <link rel="stylesheet" href="../styles/common.css">
+
     <header>
         <div class="left">
             <h2>Game libraryx</h2>

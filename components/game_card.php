@@ -1,5 +1,5 @@
 <?php 
-include_once '';
+include_once '../styles/game-card.css';
 
 ?>
 

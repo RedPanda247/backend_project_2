@@ -57,7 +57,7 @@ include_header();
 
 <div class="login-signup-card">
     <h2>Login</h2>
-    <form method="post">
+    <form class="inputs" method="post">
         <label>Username<input name="username" type="text" placeholder="Username"></label>
         <label>Password<input name="password" type="password" placeholder="******"></label>
         <button type="submit">Login</button>

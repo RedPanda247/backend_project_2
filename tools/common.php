@@ -23,7 +23,7 @@ function local_api_fetch($api)
     return $response;
 }
 
-function include_header()
+function include_header($optional_css_path = null)
 {
     include '../components/header.php';
 }
