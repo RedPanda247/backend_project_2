@@ -9,9 +9,9 @@ include_header("../styles/home.css")
     ?>
 <!-- <link rel="stylesheet" href="../styles/home.css"> -->
 
-<div class="sidebar">
+<div class="sidebar ct-container ct-affected ct-active">
     <div class="top">
-        <img class="clickable" src="../images/site_images/x.svg" alt="Close">
+        <img class="ct-toggler clickable" src="../images/site_images/x.svg" alt="Close">
     </div>
     <form class="filter-area" method="get">
 
@@ -31,6 +31,7 @@ include_header("../styles/home.css")
 
 </div>
 <div class="content">
+    <h1>Home</h1>
     <h2>
         hello
     </h2>
@@ -87,6 +88,6 @@ include_header("../styles/home.css")
     </h2>
 
 </div>
-
+<script src="../tools/class toggler/class toggler.js"></script>
 
 <!-- <a href="admin.php">admin page</a> -->

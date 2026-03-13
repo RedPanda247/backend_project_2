@@ -33,6 +33,11 @@ main {
 
     border-right: solid 2px var(--border-color);
 
+    &.ct-unactive {
+        flex: 0;
+        width: 4rem;
+    }
+
     &>.top {
         display: flex;
         justify-content: end;
