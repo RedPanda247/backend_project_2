@@ -107,4 +107,13 @@ main {
     display: flex;
     flex-direction: column;
     gap: 4rem;
+
+    .game-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, clamp(20rem, 30%, 40rem));
+
+        .game-card {
+            width: 20rem;
+        }
+    }
 }

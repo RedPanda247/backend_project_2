@@ -32,7 +32,22 @@ include_header("../styles/home.css")
     </div>
 </div>
 <div class="content">
-    <h1>Home</h1>
+    <h1>Games</h1>
+
+    <div class="game-cards">
+        <?php
+        $games = get_games_from_local_api();
+
+        foreach ($games as $game_data) {
+            game_card($game_data);
+        }
+
+        if ($games !== null) {
+
+        }
+        // echo var_dump($games);
+        ?>
+    </div>
     <h2>
         hello
     </h2>

@@ -44,3 +44,18 @@ function reload()
     header("Location: $current_page");
     exit;
 }
+
+function get_games_from_local_api()
+{
+    $result = local_api_fetch("../data/games_data.json");
+    if ($result !== null) {
+        $games = $result["results"];
+        return $games;
+    } else {
+        return null;
+    }
+}
+
+function game_card($game_data) {
+    include '../components/game_card.php';
+}

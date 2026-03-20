@@ -21,8 +21,14 @@ include_flash_message();
 
             height: 6rem;
 
-            .left * {
+
+            .left,
+            .left a {
                 height: 100%;
+
+                img {
+                    height: 100%;
+                }
             }
 
             &>* {
@@ -32,9 +38,7 @@ include_flash_message();
 
                 min-width: fit-content;
 
-                &.left {
-                    flex-direction: row;
-                }
+                &.left {}
 
                 &.center {
                     flex-direction: row;
@@ -47,7 +51,6 @@ include_flash_message();
                     justify-content: end;
                 }
             }
-
         }
     </style>
     <link rel="stylesheet" href="../styles/common.css">
