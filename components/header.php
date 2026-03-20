@@ -19,6 +19,12 @@ include_flash_message();
 
             display: flex;
 
+            height: 6rem;
+
+            .left * {
+                height: 100%;
+            }
+
             &>* {
                 display: flex;
                 align-items: center;
@@ -57,7 +63,9 @@ include_flash_message();
 
     <header>
         <div class="left">
-            <h2>Game libraryx</h2>
+            <a href="../sites/home.php">
+                <img src="../images/site_images/logo.png" alt="">
+            </a>
         </div>
         <div class="center">
             <a href="../sites/home.php">
