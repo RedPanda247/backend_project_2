@@ -18,11 +18,12 @@ if (!isset($game_data)) {
             <?php echo $game_data["name"]; ?>
         </div>
         <div class="plattforms">
-            <?php foreach ($game_data["parent_platforms"] as $platform) {
+            <?php foreach ($game_data["parent_platforms"] as $data) {
+                $platform = $data["platform"];
                 ?> 
-                <img src="" alt="platform logo">
+                <img src="<?php echo "../images/icons/" . $platform["slug"] . ".svg" ?>" alt="platform logo">
                 <?php
-                echo $platform["platform"]["slug"];
+                echo $platform["slug"];
             } ?>
         </div>
         <div class="icon-info">

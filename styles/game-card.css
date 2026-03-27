@@ -9,4 +9,12 @@
             width: 100%;
         }
     }
+    .bottom {
+        .plattforms {
+            img {
+                width: 2rem;
+                aspect-ratio: 1/1;
+            }
+        }
+    }
 }
