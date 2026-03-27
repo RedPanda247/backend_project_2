@@ -20,7 +20,7 @@ if (!isset($game_data)) {
         <div class="plattforms">
             <?php foreach ($game_data["parent_platforms"] as $platform) {
                 ?> 
-                
+                <img src="" alt="platform logo">
                 <?php
                 echo $platform["platform"]["slug"];
             } ?>
