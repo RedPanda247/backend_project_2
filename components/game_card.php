@@ -1,10 +1,6 @@
 <?php
 // include_once '../styles/game-card.css';
 
-if (!isset($game_data)) {
-    die;
-}
-
 ?>
 
 <link rel="stylesheet" href="../styles/game-card.css">

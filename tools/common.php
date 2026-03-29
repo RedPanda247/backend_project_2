@@ -59,3 +59,6 @@ function get_games_from_local_api()
 function game_card($game_data) {
     include '../components/game_card.php';
 }
+
+
+
