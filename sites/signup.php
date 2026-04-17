@@ -14,9 +14,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $username = trim($_POST['username']);
         $password = $_POST['password'];
 
-        // Check password
+        // Check password strength
         $password_strength = check_password_strength($password);
-
         if ($password_strength !== "STRONG") {
             add_flash_message($password_strength);
             reload();
