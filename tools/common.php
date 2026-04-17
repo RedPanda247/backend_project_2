@@ -91,3 +91,11 @@ function check_password_strength(string $password)
     return "STRONG";
 }
 
+function get_games_from_database()
+{
+    include "../site_scripts/db.php";
+
+    $sql = "SELECT * FROM games";
+    $result = $mysqli->query($sql);
+    $games = $result->fetch_all(MYSQL_ASSOC);
+}
