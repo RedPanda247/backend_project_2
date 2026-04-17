@@ -57,9 +57,8 @@ include_flash_message();
     <!-- Apply site specific css after to override common.css -->
     <?php if (isset($optional_css_path)) { ?>
         <link rel="stylesheet" href="<?php echo $optional_css_path; ?>"> <?php
-    } else {
-        echo "css path null";
-    } ?>
+    }
+    ?>
 </head>
 
 <body>

@@ -6,11 +6,11 @@ assert_session();
     // If flash message doesn't exist replace with empty array
     // Loop over flash messages
     foreach ($_SESSION["flash_messages"] ?? [] as $flash_message) {
-    ?>
+        ?>
         <div class="flash-message">
             <h2><?php echo $flash_message; ?></h2>
         </div>
-    <?php
+        <?php
     }
 
     // Delete flash messages
@@ -39,7 +39,7 @@ assert_session();
 
         box-shadow: 4px 4px 4px black;
         padding: 2rem;
-        background-color: darkgray;
+        background-color: #555555;
         border-radius: 1rem;
 
         animation: flash_fade_out 4s linear forwards;
@@ -75,8 +75,8 @@ assert_session();
 </style>
 <script>
     // Get all flash messages and hide them when their animation ends
-    document.querySelectorAll('.flash-message').forEach(function(msg) {
-        msg.addEventListener('animationend', function() {
+    document.querySelectorAll('.flash-message').forEach(function (msg) {
+        msg.addEventListener('animationend', function () {
             msg.style.display = 'none';
         });
     });

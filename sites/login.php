@@ -2,6 +2,8 @@
 
 include '../tools/common.php';
 
+assert_session();
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     include '../site_scripts/db.php';

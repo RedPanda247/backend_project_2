@@ -2,6 +2,7 @@
 
 include '../tools/common.php';
 
+assert_session();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -12,6 +13,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Extract from post and trim
         $username = trim($_POST['username']);
         $password = $_POST['password'];
+
+        // Check password
+        $password_strength = check_password_strength($password);
+
+        if ($password_strength !== "STRONG") {
+            add_flash_message($password_strength);
+            reload();
+        }
 
         // Get id's where username matches what user entered
         $stmt = $mysqli->prepare('SELECT id FROM users WHERE username = ? LIMIT 1');
@@ -59,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 
-    } elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    } else/*if ($_SERVER['REQUEST_METHOD'] === 'POST')*/ {
         // If the user submitted the form but no fields were filled out
         add_flash_message("Please fill out all fields");
         reload();
@@ -67,6 +76,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 include_header();
+
+include_once '../tools/flash.php';
 
 ?>
 
