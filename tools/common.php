@@ -95,7 +95,7 @@ function get_games_from_database()
 {
     include __DIR__ . "/../site_scripts/db.php";
 
-    // Step 1: Get all games
+    // Get single value data from all games
     $sql = "SELECT * FROM games";
     $result = $mysqli->query($sql);
     $games = $result->fetch_all(MYSQLI_ASSOC);
@@ -138,7 +138,7 @@ function get_games_from_database()
         }
         $stmt->close();
 
-        // Format data to match JSON structure
+        // Add all data for the game to a object type array result variable
         $final_result[] = [
             'id' => $game['game_id'],
             'slug' => $game['slug'],
@@ -172,6 +172,7 @@ function json_api_data_to_database()
         $stmt = $mysqli->prepare("INSERT IGNORE INTO games (game_id, slug, name, release_date, image_url, playtime) VALUES (?, ?, ?, ?, ?, ?)");
 
         // Get data from json to variables
+        // For the data that can be saved as single values
         $game_id = $game['id'];
         $slug = $game['slug'];
         $name = $game['name'];
@@ -184,7 +185,7 @@ function json_api_data_to_database()
 
         // Execute
         $stmt->execute();
-        
+
         $stmt->close();
 
 
@@ -192,13 +193,18 @@ function json_api_data_to_database()
         if (isset($game['genres'])) {
 
             // Delete old to avoid duplicate
+            // Delete old game genres corresponding to the game we are going through
             $mysqli->query("DELETE FROM games_genres WHERE game_id = $game_id");
 
             // Insert all genres
             foreach ($game['genres'] as $genre) {
+                // Prepare to insert name and the corresponding game id
                 $genre_stmt = $mysqli->prepare("INSERT INTO games_genres (game_id, genre_name) VALUES (?, ?)");
+                // Get value to variable
                 $genre_name = $genre['name'];
+                // Bind values
                 $genre_stmt->bind_param('is', $game_id, $genre_name);
+                // Execute and be prepared for error
                 if (!$genre_stmt->execute()) {
                     echo "Error inserting genre: " . $genre_stmt->error . "<br>";
                 }
@@ -215,9 +221,13 @@ function json_api_data_to_database()
 
             // Insert all platforms
             foreach ($game['parent_platforms'] as $parent_platform) {
+                // Prepare to insert name and the corresponding game id
                 $platform_stmt = $mysqli->prepare("INSERT INTO games_platforms (game_id, platform_name) VALUES (?, ?)");
+                // Get value to variable
                 $platform_name = $parent_platform['platform']['name'];
+                // Bind values
                 $platform_stmt->bind_param('is', $game_id, $platform_name);
+                // Execute and be prepared for error
                 if (!$platform_stmt->execute()) {
                     echo "Error inserting platform: " . $platform_stmt->error . "<br>";
                 }
@@ -234,9 +244,13 @@ function json_api_data_to_database()
 
             // Insert all stores
             foreach ($game['stores'] as $store) {
+                // Prepare to insert name and the corresponding game id
                 $store_stmt = $mysqli->prepare("INSERT INTO games_stores (game_id, store_name) VALUES (?, ?)");
+                // Get value to variable
                 $store_name = $store['store']['name'];
+                // Bind values
                 $store_stmt->bind_param('is', $game_id, $store_name);
+                // Execute and be prepared for error
                 if (!$store_stmt->execute()) {
                     echo "Error inserting store: " . $store_stmt->error . "<br>";
                 }
