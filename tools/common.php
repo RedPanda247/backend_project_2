@@ -95,13 +95,15 @@ function get_games_from_database()
 {
     include __DIR__ . "/../site_scripts/db.php";
 
-    // Get single value data from all games
+    // Get all games and their single value data
     $sql = "SELECT * FROM games";
     $result = $mysqli->query($sql);
     $games = $result->fetch_all(MYSQLI_ASSOC);
 
-    // Step 2: For each game, get related data
+    // Create variable for collecting all games data
     $final_result = [];
+
+    // Loop through all games
     foreach ($games as $game) {
         $game_id = $game['game_id'];
 
@@ -117,13 +119,13 @@ function get_games_from_database()
         $stmt->close();
 
         // Get platforms
-        $stmt = $mysqli->prepare("SELECT plattform_name FROM games_platforms WHERE game_id = ?");
+        $stmt = $mysqli->prepare("SELECT platform_name FROM games_platforms WHERE game_id = ?");
         $stmt->bind_param('i', $game_id);
         $stmt->execute();
         $result = $stmt->get_result();
         $platforms = [];
         while ($row = $result->fetch_assoc()) {
-            $platforms[] = $row['plattform_name'];
+            $platforms[] = $row['platform_name'];
         }
         $stmt->close();
 
@@ -138,7 +140,7 @@ function get_games_from_database()
         }
         $stmt->close();
 
-        // Add all data for the game to a object type array result variable
+        // Add all data for the game to an object type array result variable
         $final_result[] = [
             'id' => $game['game_id'],
             'slug' => $game['slug'],
@@ -146,8 +148,9 @@ function get_games_from_database()
             'released' => $game['release_date'],
             'background_image' => $game['image_url'],
             'playtime' => $game['playtime'],
+            'rating' => $game['rating'],
             'genres' => $genres,
-            'platforms' => $platforms,
+            'parent_platforms' => $platforms,
             'stores' => $stores
         ];
     }
@@ -169,7 +172,7 @@ function json_api_data_to_database()
     foreach ($games as $game) {
 
         // Prepare data that should be inserted, use IGNORE to prevent the same game be inserted multiple times by it's api id
-        $stmt = $mysqli->prepare("INSERT IGNORE INTO games (game_id, slug, name, release_date, image_url, playtime) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt = $mysqli->prepare("INSERT IGNORE INTO games (game_id, slug, name, release_date, image_url, playtime, rating) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
         // Get data from json to variables
         // For the data that can be saved as single values
@@ -179,9 +182,12 @@ function json_api_data_to_database()
         $release_date = $game['released'];
         $image_url = $game['background_image'];
         $playtime = $game['playtime'];
+        $rating = $game['rating'];
 
+        echo $rating;
         // Bind variables
-        $stmt->bind_param('issssi', $game_id, $slug, $name, $release_date, $image_url, $playtime);
+        $stmt->bind_param('issssis', $game_id, $slug, $name, $release_date, $image_url, $playtime, $rating);
+
 
         // Execute
         $stmt->execute();
@@ -224,7 +230,7 @@ function json_api_data_to_database()
                 // Prepare to insert name and the corresponding game id
                 $platform_stmt = $mysqli->prepare("INSERT INTO games_platforms (game_id, platform_name) VALUES (?, ?)");
                 // Get value to variable
-                $platform_name = $parent_platform['platform']['name'];
+                $platform_name = $parent_platform['platform']['slug'];
                 // Bind values
                 $platform_stmt->bind_param('is', $game_id, $platform_name);
                 // Execute and be prepared for error
@@ -256,7 +262,6 @@ function json_api_data_to_database()
                 }
                 $store_stmt->close();
             }
-
         }
     }
 }

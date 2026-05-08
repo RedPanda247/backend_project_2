@@ -23,8 +23,19 @@ include_header("../styles/home.css")
             </div>
 
             <div class="filters">
-                <div>
-
+                <div class="rating">
+                    <h3>Rating</h3>
+                    <label>Min Rating: <input type="number" name="min_rating" min="0" max="5" step="0.1"
+                            value="<?= $_GET['min_rating'] ?? '0' ?>"></label>
+                    <label>Max Rating: <input type="number" name="max_rating" min="0" max="5" step="0.1"
+                            value="<?= $_GET['max_rating'] ?? '5' ?>"></label>
+                </div>
+                <div class="playtime">
+                    <h3>Playtime</h3>
+                    <label>Min Playtime: <input type="number" name="min_playtime" min="0" step="1"
+                            value="<?= $_GET['min_playtime'] ?? '0' ?>"></label>
+                    <label>Max Playtime: <input type="number" name="max_playtime" min="0" step="1"
+                            value="<?= $_GET['max_playtime'] ?? '' ?>"></label>
                 </div>
             </div>
 
@@ -38,14 +49,17 @@ include_header("../styles/home.css")
         <?php
         $games = get_games_from_local_api();
 
-        foreach ($games as $game_data) {
+        // foreach ($games as $game_data) {
+        //     game_card($game_data);
+        // }
+        
+        $gamez = get_games_from_database();
+
+        foreach ($gamez as $game_data) {
             game_card($game_data);
         }
 
-        if ($games !== null) {
-
-        }
-        // echo var_dump($games);
+        // echo var_dump($gamez[1]['genres']);
         ?>
     </div>
     <h2>
