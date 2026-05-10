@@ -91,7 +91,7 @@ function check_password_strength(string $password)
     return "STRONG";
 }
 
-function get_games_from_database()
+function get_games_from_database($get)
 {
     include __DIR__ . "/../site_scripts/db.php";
 
@@ -264,4 +264,9 @@ function json_api_data_to_database()
             }
         }
     }
+}
+
+function get_all_platforms()
+{
+    return ["pc", "playstation", "xbox", "android", "mac", "linux", "nintendo", "ios"];
 }

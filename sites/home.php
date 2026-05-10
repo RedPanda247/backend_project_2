@@ -37,8 +37,26 @@ include_header("../styles/home.css")
                     <label>Max Playtime: <input type="number" name="max_playtime" min="0" step="1"
                             value="<?= $_GET['max_playtime'] ?? '' ?>"></label>
                 </div>
-            </div>
+                <div class="platforms">
+                    <h3>Platforms</h3>
+                    <?php
 
+                    // Get all platforms
+                    $platforms = get_all_platforms();
+
+                    // Get previously selected platforms
+                    $selected_platforms = $_GET['platforms'] ?? [];
+
+                    foreach ($platforms as $platform) {
+                        // Check if current platform was selected
+                        $checked = in_array($platform, $selected_platforms);
+                        ?>
+                        <label><input type="checkbox" name="platforms[]" value="<?php echo $platform; ?>" <?php echo $checked ? 'checked' : ''; ?>><?php echo $platform; ?></label>
+                        <?php
+                    }
+                    ?>
+                </div>
+            </div>
         </form>
     </div>
 </div>
@@ -47,19 +65,13 @@ include_header("../styles/home.css")
 
     <div class="game-cards">
         <?php
-        $games = get_games_from_local_api();
+        echo var_dump($_GET);
 
-        // foreach ($games as $game_data) {
-        //     game_card($game_data);
-        // }
-        
         $gamez = get_games_from_database();
 
         foreach ($gamez as $game_data) {
             game_card($game_data);
         }
-
-        // echo var_dump($gamez[1]['genres']);
         ?>
     </div>
     <h2>
