@@ -16,7 +16,7 @@ include_header("../styles/home.css")
         </div>
         <form class="filter-area" method="get">
 
-            <button class="clickable search-button" type="submit">Search</button>
+            <button class="clickable search-button" type="submit">Filter</button>
 
             <div class="top">
                 <h2>Filters</h2>
@@ -56,6 +56,44 @@ include_header("../styles/home.css")
                     }
                     ?>
                 </div>
+                <div class="genres">
+                    <h3>Genres</h3>
+                    <?php
+
+                    // Get all genres
+                    $genres = get_all_genres();
+
+                    // Get previously selected genres
+                    $selected_genres = $_GET['genres'] ?? [];
+
+                    foreach ($genres as $genre) {
+                        // Check if current genre was selected
+                        $checked = in_array($genre, $selected_genres);
+                        ?>
+                        <label><input type="checkbox" name="genres[]" value="<?php echo $genre; ?>" <?php echo $checked ? 'checked' : ''; ?>><?php echo $genre; ?></label>
+                        <?php
+                    }
+                    ?>
+                </div>
+                <div class="stores">
+                    <h3>Stores</h3>
+                    <?php
+
+                    // Get all stores
+                    $stores = get_all_stores();
+
+                    // Get previously selected stores
+                    $selected_stores = $_GET['stores'] ?? [];
+
+                    foreach ($stores as $store) {
+                        // Check if current store was selected
+                        $checked = in_array($store, $selected_stores);
+                        ?>
+                        <label><input type="checkbox" name="stores[]" value="<?php echo $store; ?>" <?php echo $checked ? 'checked' : ''; ?>><?php echo $store; ?></label>
+                        <?php
+                    }
+                    ?>
+                </div>
             </div>
         </form>
     </div>
@@ -65,8 +103,8 @@ include_header("../styles/home.css")
 
     <div class="game-cards">
         <?php
-        echo var_dump($_GET);
-
+        // echo var_dump($_GET);
+        
         $gamez = get_games_from_database($_GET);
 
         foreach ($gamez as $game_data) {
@@ -74,61 +112,6 @@ include_header("../styles/home.css")
         }
         ?>
     </div>
-    <h2>
-        hello
-    </h2>
-    <h2>
-        hello
-    </h2>
-    <h2>
-        hello
-    </h2>
-    <h2>
-        hello
-    </h2>
-    <h2>
-        hello
-    </h2>
-    <h2>
-        hello
-    </h2>
-    <h2>
-        hello
-    </h2>
-    <h2>
-        hello
-    </h2>
-    <h2>
-        hello
-    </h2>
-    <h2>
-        hello
-    </h2>
-    <h2>
-        hello
-    </h2>
-    <h2>
-        hello
-    </h2>
-    <h2>
-        hello
-    </h2>
-    <h2>
-        hello
-    </h2>
-    <h2>
-        hello
-    </h2>
-    <h2>
-        hello
-    </h2>
-    <h2>
-        hello
-    </h2>
-    <h2>
-        hello
-    </h2>
-
 </div>
 <script src="../tools/class toggler/class toggler.js"></script>
 

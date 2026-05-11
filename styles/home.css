@@ -55,6 +55,7 @@ main {
     .sidebar-container {
 
         width: 20rem;
+        height: 100%;
 
         padding: 1rem;
         gap: 1rem;
@@ -83,6 +84,8 @@ main {
             display: flex;
             flex-direction: column;
             gap: 1rem;
+
+            overflow: auto;
 
             .search-button {
                 background: none;

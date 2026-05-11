@@ -30,11 +30,24 @@
 
 
 
-        .plattforms {
+        .platforms {
             img {
                 width: 1rem;
                 aspect-ratio: 1/1;
             }
+        }
+
+        .genres {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .stores {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
 
         .icon-info {

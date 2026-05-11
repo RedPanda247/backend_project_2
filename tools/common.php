@@ -194,7 +194,6 @@ function get_games_from_database($get)
     $games_to_remove = array_fill(0, count($final_result), false);
 
     // Filter for platforms
-
     foreach ($final_result as $key => $game) {
         if (!empty($get['platforms'])) {
             if (empty(array_intersect($get['platforms'], $game['parent_platforms']))) {
@@ -203,8 +202,25 @@ function get_games_from_database($get)
         }
     }
 
-    // Remove games
+    // Filter for genres
+    foreach ($final_result as $key => $game) {
+        if (!empty($get['genres'])) {
+            if (empty(array_intersect($get['genres'], $game['genres']))) {
+                $games_to_remove[$key] = true;
+            }
+        }
+    }
 
+    // Filter for stores
+    foreach ($final_result as $key => $game) {
+        if (!empty($get['stores'])) {
+            if (empty(array_intersect($get['stores'], $game['stores']))) {
+                $games_to_remove[$key] = true;
+            }
+        }
+    }
+
+    // Remove games
     for ($i = count($final_result) - 1; $i >= 0; $i--) {
         if ($games_to_remove[$i]) {
             unset($final_result[$i]);
@@ -325,4 +341,14 @@ function json_api_data_to_database()
 function get_all_platforms()
 {
     return ["pc", "playstation", "xbox", "android", "mac", "linux", "nintendo", "ios"];
+}
+
+function get_all_genres()
+{
+    return ["Action", "Adventure", "Indie", "Puzzle", "Platformer", "RPG", "Shooter"];
+}
+
+function get_all_stores()
+{
+    return ["Steam", "PlayStation Store", "Xbox Store", "Xbox 360 Store", "GOG", "Nintendo Store", "Epic Games", "Google Play", "App Store"];
 }
