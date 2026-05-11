@@ -67,7 +67,7 @@ include_header("../styles/home.css")
         <?php
         echo var_dump($_GET);
 
-        $gamez = get_games_from_database();
+        $gamez = get_games_from_database($_GET);
 
         foreach ($gamez as $game_data) {
             game_card($game_data);

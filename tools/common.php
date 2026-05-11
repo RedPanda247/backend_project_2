@@ -97,6 +97,42 @@ function get_games_from_database($get)
 
     // Get all games and their single value data
     $sql = "SELECT * FROM games";
+
+    // Basic sql filtering
+
+    $filter_queries = [];
+
+    if (!empty($get['min_rating'])) {
+        // Make sure user input is numeric
+        $filter_queries[] = "rating >= " . floatval($get['min_rating']);
+    }
+
+    if (!empty($get['max_rating'])) {
+        // Make sure user input is numeric
+        $filter_queries[] = "rating <= " . floatval($get['max_rating']);
+    }
+
+    if (!empty($get['min_playtime'])) {
+        // Make sure user input is numeric
+        $filter_queries[] = "playtime >= " . intval($get['min_playtime']);
+    }
+
+    if (!empty($get['max_playtime'])) {
+        // Make sure user input is numeric
+        $filter_queries[] = "playtime <= " . intval($get['max_playtime']);
+    }
+
+    $filter_sql = "";
+
+    foreach ($filter_queries as $i => $query) {
+        $keyword = ($i == 0) ? "WHERE" : "AND";
+        $filter_sql .= " " . $keyword . " " . $query;
+    }
+
+    $sql .= $filter_sql;
+
+    // Get the result
+
     $result = $mysqli->query($sql);
     $games = $result->fetch_all(MYSQLI_ASSOC);
 
@@ -153,6 +189,26 @@ function get_games_from_database($get)
             'parent_platforms' => $platforms,
             'stores' => $stores
         ];
+    }
+
+    $games_to_remove = array_fill(0, count($final_result), false);
+
+    // Filter for platforms
+
+    foreach ($final_result as $key => $game) {
+        if (!empty($get['platforms'])) {
+            if (empty(array_intersect($get['platforms'], $game['parent_platforms']))) {
+                $games_to_remove[$key] = true;
+            }
+        }
+    }
+
+    // Remove games
+
+    for ($i = count($final_result) - 1; $i >= 0; $i--) {
+        if ($games_to_remove[$i]) {
+            unset($final_result[$i]);
+        }
     }
 
     $mysqli->close();
