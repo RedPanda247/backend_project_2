@@ -1,0 +1,58 @@
+.content {
+    display: flex;
+    flex-direction: column;
+
+    gap: 2rem;
+
+    padding: 4rem 20%;
+
+    &>img {
+        width: 100%;
+    }
+
+    .info {
+        .row {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        img {
+            width: 1rem;
+        }
+
+        .icon-info {
+            display: flex;
+            gap: 1rem;
+
+            width: fit-content;
+
+            &>div {
+                display: flex;
+                align-items: center;
+                gap: 0.3rem;
+
+                img {
+                    width: 1.2rem;
+                    height: 1.2rem;
+                }
+            }
+        }
+    }
+
+    .comments-area {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .comments {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        .top {
+            display: flex;
+            gap: 0.5rem;
+        }
+    }
+}

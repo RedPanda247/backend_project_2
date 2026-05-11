@@ -4,9 +4,9 @@ include_once '../tools/common.php';
 assert_session();
 
 
-include_header("../styles/home.css")
+include_header("../styles/home.css");
 
-    ?>
+?>
 <!-- <link rel="stylesheet" href="../styles/home.css"> -->
 
 <div class="sidebar ct-container ct-affected ct-active">
@@ -115,4 +115,3 @@ include_header("../styles/home.css")
 </div>
 <script src="../tools/class toggler/class toggler.js"></script>
 
-<!-- <a href="admin.php">admin page</a> -->
