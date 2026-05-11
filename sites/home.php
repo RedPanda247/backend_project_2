@@ -114,4 +114,3 @@ include_header("../styles/home.css");
     </div>
 </div>
 <script src="../tools/class toggler/class toggler.js"></script>
-

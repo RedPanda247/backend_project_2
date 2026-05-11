@@ -80,9 +80,9 @@ if (empty($game_data)) {
                 <img src="../images/icons/star.svg" alt="star">
                 <h3><?php echo $game_data["rating"] ?></h3>
             </div>
-            <div class="comments">
+            <div class="comments-icon">
                 <img src="../images/icons/chat-icon.svg" alt="chat bubble">
-                <h3>4</h3>
+                <h3><?php echo count($game_data['comments']) ?></h3>
             </div>
             <div class="playtime">
                 <img src="../images/icons/timer.svg" alt="timer">

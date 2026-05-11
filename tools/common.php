@@ -176,6 +176,19 @@ function get_games_from_database($get)
         }
         $stmt->close();
 
+        // Get comments
+        // SQL
+        $sql = "SELECT * FROM comments WHERE game_id = ? ORDER BY created_at DESC";
+        $stmt = $mysqli->prepare($sql);
+        // Bind to prevent injection
+        $stmt->bind_param('i', $game['game_id']);
+        // Execute
+        $stmt->execute();
+        // Get result and put in comments variable
+        $result = $stmt->get_result();
+        $comments = $result->fetch_all(MYSQLI_ASSOC);
+
+
         // Add all data for the game to an object type array result variable
         $final_result[] = [
             'id' => $game['game_id'],
@@ -187,7 +200,8 @@ function get_games_from_database($get)
             'rating' => $game['rating'],
             'genres' => $genres,
             'parent_platforms' => $platforms,
-            'stores' => $stores
+            'stores' => $stores,
+            'comments' => $comments
         ];
     }
 

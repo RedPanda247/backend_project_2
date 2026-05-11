@@ -45,7 +45,7 @@
                 </div>
                 <div class="comments">
                     <img src="../images/icons/chat-icon.svg" alt="chat bubble">
-                    <h3>4</h3>
+                    <h3><?php echo count($game_data['comments']) ?></h3>
                 </div>
                 <div class="playtime">
                     <img src="../images/icons/timer.svg" alt="timer">

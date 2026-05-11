@@ -11,9 +11,13 @@
     }
 
     .info {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+
         .row {
             display: flex;
-            gap: 0.5rem;
+            gap: 1rem;
         }
 
         img {
@@ -24,17 +28,9 @@
             display: flex;
             gap: 1rem;
 
-            width: fit-content;
-
-            &>div {
+            &>* {
                 display: flex;
-                align-items: center;
                 gap: 0.3rem;
-
-                img {
-                    width: 1.2rem;
-                    height: 1.2rem;
-                }
             }
         }
     }
