@@ -133,7 +133,7 @@ if (empty($game_data)) {
                         <h6><?php echo $comment['created_at'] ?></h6>
                     </div>
                     <div class="bottom">
-                        <h3><?php echo $comment['text'] ?></h3>
+                        <h3><?php echo htmlspecialchars($comment['text']) ?></h3>
                     </div>
                 </div>
                 <?php
