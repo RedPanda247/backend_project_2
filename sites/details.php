@@ -14,10 +14,25 @@ if (!isset($_GET['game'])) {
 
 $game_id = $_GET['game'];
 
-if (isset($_POST['comment']) && !$_SESSION['logged_in']) {
-    add_flash_message('You must be logged in to comment');
-    header('Location: details.php?game=' . $game_id);
-    exit;
+// Check commenting
+if (isset($_POST['comment'])) {
+    $reload = false;
+
+    // Check if logged in
+    if (!$_SESSION['logged_in']) {
+        add_flash_message('You must be logged in to comment');
+        $reload = true;
+        // Check if comment has text
+    } elseif (strlen(trim($_POST['comment']))) {
+        add_flash_message('Comment must contain text');
+        $reload = true;
+    }
+
+    // Reload page and preserve $game_id
+    if ($reload) {
+        header('Location: details.php?game=' . $game_id);
+        exit;
+    }
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comment']) && isset($_SESSION['user_id'])) {
