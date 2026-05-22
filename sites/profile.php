@@ -5,7 +5,7 @@ assert_session();
 
 include_header();
 
-if (!$_SESSION['logged_id']) {
+if (!$_SESSION['logged_in']) {
     add_flash_message('You must be logged in to see the profile page');
     header('Location: home.php');
     exit;
