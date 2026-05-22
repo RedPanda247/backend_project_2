@@ -8,11 +8,12 @@ include_header("../styles/details.css");
 
 
 // Get game id
-if (!isset($_GET['game'])) {
+// Make sure it is a number
+if (!isset($_GET['game']) || !is_numeric($_GET['game'])) {
     die("No game selected");
 }
 
-$game_id = $_GET['game'];
+$game_id = (int)$_GET['game'];
 
 // Check commenting
 if (isset($_POST['comment'])) {
