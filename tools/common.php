@@ -30,7 +30,7 @@ function include_header($optional_css_path = null)
 
 function include_flash_message()
 {
-    include 'flash.php';
+    include __DIR__ . '/flash.php';
 }
 
 function add_flash_message($message)

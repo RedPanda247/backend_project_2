@@ -6,6 +6,8 @@ assert_session();
 
 include_header("../styles/home.css");
 
+include_flash_message();
+
 ?>
 <!-- <link rel="stylesheet" href="../styles/home.css"> -->
 

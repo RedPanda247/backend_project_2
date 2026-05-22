@@ -4,6 +4,16 @@ include_once '../tools/common.php';
 
 include_header();
 
+assert_session();
+
+include '../site_scripts/config.php';
+
+if ($_SESSION['user_id'] !== $admin_user_id) {
+    add_flash_message('unathorized');
+    header('location: home.php');
+    exit;
+}
+
 
 if (isset($_GET["refresh_game_api_data"])) {
     // Refresh game api data with own api because it's cool
