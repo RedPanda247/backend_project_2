@@ -61,7 +61,7 @@ assert_session();
 
 <body>
 
-    <?php include __DIR__ . '../tools/flash.php'; ?>
+    <?php include_flash_message();; ?>
 
     <header>
         <div class="left">

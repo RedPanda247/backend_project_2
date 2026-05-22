@@ -14,6 +14,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $username = trim($_POST['username']);
         $password = $_POST['password'];
 
+        // Check username length
+        if (strlen($username) < 3) {
+            add_flash_message('username too short: must be atleast 3 characters long');
+            reload();
+        } elseif (strlen($username) >= 30) {
+            add_flash_message('username too long: must be less than 30 characters long');
+            reload();
+        }
+
         // Check password strength
         $password_strength = check_password_strength($password);
         if ($password_strength !== "STRONG") {

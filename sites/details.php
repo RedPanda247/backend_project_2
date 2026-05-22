@@ -7,6 +7,11 @@ assert_session();
 include_header("../styles/details.css");
 
 
+if (isset($_POST['comment']) && !$_SESSION['logged_in']) {
+    add_flash_message('You must be logged in to comment');
+}
+
+
 // Get game id
 if (!isset($_GET['game'])) {
     die("No game selected");
